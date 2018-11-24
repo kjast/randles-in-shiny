@@ -1,0 +1,50 @@
+library(shiny)
+
+shinyUI(pageWithSidebar(
+  headerPanel(title = "Wykres Nyquista dla układu Randlesa",
+              windowTitle = "Wykres Nyquista dla układu Randlesa"),
+  sidebarPanel(
+    numericInput("obs",
+                 "Liczba obserwacji:",
+                 10),
+    numericInput("wmin",
+                 "Minimalna częstotliwość [Hz]:",
+                 0.1,
+                 min = 0,
+                 max = 10000,
+                 step = 0.1),
+    numericInput("wmax",
+                 "Maksymalna częstotliwość [Hz]:",
+                 1000,
+                 min = 0,
+                 max = 10000,
+                 step = 50),
+    numericInput("Re",
+                 "Opór elektorlitu (R_e) [Ohm]:",
+                 450,
+                 min = 0,
+                 max = 1000,
+                 step = 5),
+    numericInput("Cdl",
+                 "Pojemność (C_dl) [nF]:",
+                 700,
+                 min = 0,
+                 max = 10000,
+                 step = 10),
+    numericInput("Rct",
+                 "Opór transportu ładunków (R_ct) [Ohm]:",
+                 10000,
+                 min = 0,
+                 max = 100000,
+                 step = 100),
+    numericInput("s",
+                 "Współczynnik Warburga (W) [Ohm*s^(-1/2)]:",
+                 2200,
+                 min = 0,
+                 max = 10000,
+                 step = 50)
+  ),
+  mainPanel(
+    plotOutput("impPlot")
+  )
+))
